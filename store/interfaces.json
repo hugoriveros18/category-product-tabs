@@ -1,5 +1,7 @@
 {
-  "meta-tag": {
-    "component": "MetaTags"
+  "category-product-tabs": {
+    "component": "CategoryProductTabs",
+    "composition": "children",
+    "allowed": "*"
   }
 }

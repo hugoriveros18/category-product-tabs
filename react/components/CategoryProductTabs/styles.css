@@ -1,0 +1,113 @@
+.categorias__general-container {
+  display       : flex;
+  flex-direction: column;
+  overflow      : hidden;
+  max-width     : 1280px;
+  margin        : 0 auto;
+}
+
+.categorias__botones-container {
+  display   : flex;
+  margin    : 26px 0 0;
+  padding   : 0;
+  overflow-x: auto;
+  list-style: none;
+}
+
+.categorias__botones-container::-webkit-scrollbar {
+  display: none;
+}
+
+.boton-categoria__box {
+  margin : 0;
+  padding: 0 10px;
+}
+
+.boton-categoria__box p {
+  margin        : 0;
+  padding-bottom: 10px;
+  font-family   : Lato, sans-serif;
+  font-weight   : 400;
+  font-size     : 14px;
+  color         : #353535;
+  white-space   : nowrap;
+  border        : none;
+  cursor        : pointer;
+}
+
+.boton-categoria__box--active p {
+  color        : #ec6608;
+  border-bottom: 2px solid #ec6608;
+  font-weight  : 700;
+}
+
+.categorias__productos-container {
+  margin-top: -10px;
+}
+
+.categorias__productos-container--internal {
+  display   : flex;
+  width     : 100%;
+  transition: all .5ms;
+}
+
+.productos__slider-container {
+  display       : flex;
+  flex-direction: column;
+  width         : 100%;
+}
+
+.productos__ver-todo {
+  display        : flex;
+  justify-content: center;
+  width          : 100%;
+  margin-top     : 15px;
+}
+
+.productos__ver-todo a {
+  padding         : 7px 23px;
+  font-size       : 12px;
+  font-weight     : 700;
+  text-decoration : none;
+  color           : #ec6608;
+  background-color: transparent;
+  border          : 1px solid #ec6608;
+  border-radius   : 4px;
+  cursor          : pointer;
+}
+
+@media screen and (min-width: 640px) {
+  .categorias__botones-container {
+    justify-content: center;
+  }
+
+  .boton-categoria__box {
+    padding: 0 24px;
+  }
+
+  .productos__ver-todo {
+    margin-top: 24px;
+  }
+
+  .productos__ver-todo a {
+    font-size   : 16px;
+    padding     : 12px 24px;
+    border-width: 2px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .categorias__botones-container {
+    margin: 26px 0;
+  }
+
+  .categorias__productos-container {
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .boton-categoria__box p {
+    font-size: 16px;
+  }
+}
