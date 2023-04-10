@@ -57,6 +57,10 @@
   width         : 100%;
 }
 
+.productos__slider-container--child {
+  min-height    : 350px;
+}
+
 .productos__ver-todo {
   display        : flex;
   justify-content: center;
@@ -104,10 +108,18 @@
   .categorias__productos-container {
     margin: 0;
   }
+
+  .productos__slider-container--child {
+    min-height    : 365px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .boton-categoria__box p {
     font-size: 16px;
+  }
+
+  .productos__slider-container--child {
+    min-height    : 402px;
   }
 }

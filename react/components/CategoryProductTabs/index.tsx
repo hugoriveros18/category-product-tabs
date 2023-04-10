@@ -49,6 +49,7 @@ const CSS_HANDLES = [
   'categorias__productos-container',
   'categorias__productos-container--internal',
   'productos__slider-container',
+  'productos__slider-container--child',
   'productos__ver-todo'
 ]
 
@@ -58,12 +59,28 @@ const CategoryProductTabs = ({categorias, children}:CategoryProductTabsProps) =>
   const handles = useCssHandles(CSS_HANDLES);
 
   //STATES
-  const [categoriaActiva, setCategoriaActiva] = useState<string>('');
+  const [categoriaActiva, setCategoriaActiva] = useState<Categoria | null>(null);
+  const [cloneChild, setCloneChild] = useState<any>(null);
 
   //EFFECTS
   useEffect(() => {
-    setCategoriaActiva('-0%');
+    setCategoriaActiva(categorias[0]);
   },[])
+
+  useEffect(() => {
+    if(categoriaActiva) {
+      const newChild = cloneElement(children[0], {
+        category: categoriaActiva.categoriaId,
+        collection: categoriaActiva.coleccionId,
+        orderBy: ordenProductos[categoriaActiva.ordenProductos],
+        hideUnavailableItems: categoriaActiva.esconderItemsNoDisponibles,
+        maxItems: categoriaActiva.maximoItems,
+        skusFilter: filtroSku[categoriaActiva.filtroSku],
+        installmentCriteria: cuotasMostradas[categoriaActiva.cuotasMostradas]
+      })
+      setCloneChild(newChild);
+    }
+  },[categoriaActiva])
 
   //JSX
   return(
@@ -72,12 +89,12 @@ const CategoryProductTabs = ({categorias, children}:CategoryProductTabsProps) =>
       {/* COLUMNA BOTONES */}
       <ul className={`${handles['categorias__botones-container']}`}>
         {
-          categorias.map((categoria, index) => {
+          categorias.map((categoria) => {
             return(
               <li
                 key={categoria.__editorItemTitle}
-                className={`${handles['boton-categoria__box']} ${categoriaActiva === `-${index*100}%` && handles['boton-categoria__box--active']}`}
-                onClick={() => setCategoriaActiva(`-${index*100}%`)}
+                className={`${handles['boton-categoria__box']} ${categoriaActiva?.__editorItemTitle === categoria.__editorItemTitle && handles['boton-categoria__box--active']}`}
+                onClick={() => setCategoriaActiva(categoria)}
               >
                 <p>{categoria.__editorItemTitle}</p>
               </li>
@@ -90,37 +107,21 @@ const CategoryProductTabs = ({categorias, children}:CategoryProductTabsProps) =>
       <div className={`${handles['categorias__productos-container']}`}>
         <div
           className={`${handles['categorias__productos-container--internal']}`}
-          style={{transform: `translate(${categoriaActiva},0)`}}
         >
           {
-            categorias.map((categoria, index) => {
-              return(
-                <div
-                  key={categoria.__editorItemTitle}
-                  className={`${handles['productos__slider-container']}`}
-                  style={categoriaActiva === `-${index*100}%` ? {opacity: 1, transition: 'all 1s'} : {opacity: 0, transition: 'all 0.5ms'}}
-                >
-                  <div>
-                    {
-                      cloneElement(children[0], {
-                        category: categoria.categoriaId,
-                        collection: categoria.coleccionId,
-                        orderBy: ordenProductos[categoria.ordenProductos],
-                        hideUnavailableItems: categoria.esconderItemsNoDisponibles,
-                        maxItems: categoria.maximoItems,
-                        skusFilter: filtroSku[categoria.filtroSku],
-                        installmentCriteria: cuotasMostradas[categoria.cuotasMostradas]
-                      })
-                    }
-                  </div>
-                  <div className={`${handles['productos__ver-todo']}`}>
-                    <a href={categoria.linkRedireccionBoton}>
-                      VER TODO
-                    </a>
-                  </div>
-                </div>
-              )
-            })
+            categoriaActiva &&
+            <div
+              className={`${handles['productos__slider-container']}`}
+            >
+              <div className={`${handles['productos__slider-container--child']}`}>
+                {cloneChild}
+              </div>
+              <div className={`${handles['productos__ver-todo']}`}>
+                <a href={categoriaActiva.linkRedireccionBoton}>
+                  VER TODO
+                </a>
+              </div>
+            </div>
           }
         </div>
       </div>
