@@ -1,4 +1,4 @@
-import React, { useState, useEffect, cloneElement } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCssHandles } from 'vtex.css-handles';
 import './styles.css';
 import CategoryProductTabsSchema from '../../schema/CategoryProductTabs';
@@ -18,7 +18,7 @@ type Categoria = {
   cuotasMostradas: CuotasMostradas
 }
 type CategoryProductTabsProps = {
-  children: any
+  ProductListContext: any
   categorias: Categoria[]
 }
 
@@ -53,34 +53,19 @@ const CSS_HANDLES = [
   'productos__ver-todo'
 ]
 
-const CategoryProductTabs = ({categorias, children}:CategoryProductTabsProps) => {
+const CategoryProductTabs = ({ProductListContext,categorias}:CategoryProductTabsProps) => {
 
   //CSS HANDLES
   const handles = useCssHandles(CSS_HANDLES);
 
   //STATES
   const [categoriaActiva, setCategoriaActiva] = useState<Categoria | null>(null);
-  const [cloneChild, setCloneChild] = useState<any>(null);
 
   //EFFECTS
   useEffect(() => {
     setCategoriaActiva(categorias[0]);
   },[])
 
-  useEffect(() => {
-    if(categoriaActiva) {
-      const newChild = cloneElement(children[0], {
-        category: categoriaActiva.categoriaId,
-        collection: categoriaActiva.coleccionId,
-        orderBy: ordenProductos[categoriaActiva.ordenProductos],
-        hideUnavailableItems: categoriaActiva.esconderItemsNoDisponibles,
-        maxItems: categoriaActiva.maximoItems,
-        skusFilter: filtroSku[categoriaActiva.filtroSku],
-        installmentCriteria: cuotasMostradas[categoriaActiva.cuotasMostradas]
-      })
-      setCloneChild(newChild);
-    }
-  },[categoriaActiva])
 
   //JSX
   return(
@@ -114,7 +99,18 @@ const CategoryProductTabs = ({categorias, children}:CategoryProductTabsProps) =>
               className={`${handles['productos__slider-container']}`}
             >
               <div className={`${handles['productos__slider-container--child']}`}>
-                {cloneChild}
+                {
+                  categoriaActiva &&
+                  <ProductListContext
+                    category={categoriaActiva.categoriaId}
+                    collection={categoriaActiva.coleccionId}
+                    orderBy={ordenProductos[categoriaActiva.ordenProductos]}
+                    hideUnavailableItems={categoriaActiva.esconderItemsNoDisponibles}
+                    maxItems={categoriaActiva.maximoItems}
+                    skusFilter={filtroSku[categoriaActiva.filtroSku]}
+                    installmentCriteria={cuotasMostradas[categoriaActiva.cuotasMostradas]}
+                  />
+                }
               </div>
               <div className={`${handles['productos__ver-todo']}`}>
                 <a href={categoriaActiva.linkRedireccionBoton}>
