@@ -45,6 +45,7 @@ const CSS_HANDLES = [
   'categorias__general-container',
   'categorias__botones-container',
   'boton-categoria__box',
+  'boton-categoria__box-text',
   'boton-categoria__box--active',
   'categorias__productos-container',
   'categorias__productos-container--internal',
@@ -81,7 +82,7 @@ const CategoryProductTabs = ({ProductListContext,categorias}:CategoryProductTabs
                 className={`${handles['boton-categoria__box']} ${categoriaActiva?.__editorItemTitle === categoria.__editorItemTitle && handles['boton-categoria__box--active']}`}
                 onClick={() => setCategoriaActiva(categoria)}
               >
-                <p>{categoria.__editorItemTitle}</p>
+                <p className={`${handles['boton-categoria__box-text']}`}>{categoria.__editorItemTitle}</p>
               </li>
             )
           })
