@@ -59,7 +59,21 @@
 }
 
 .productos__slider-container--child {
+  position: relative;
   min-height    : 350px;
+}
+
+.productos__slider-container--child-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
 }
 
 .productos__ver-todo {
@@ -79,6 +93,12 @@
   border          : 1px solid #ec6608;
   border-radius   : 4px;
   cursor          : pointer;
+  transition: all .3s ease-out;
+}
+
+.productos__ver-todo a:hover {
+  background-color: #ec6608;
+  color: #fff;
 }
 
 @media screen and (min-width: 640px) {
@@ -121,6 +141,86 @@
   }
 
   .productos__slider-container--child {
-    min-height    : 402px;
+    min-height    : 380px;
+  }
+
+  .productos__ver-todo {
+    margin-top: 0;
   }
 }
+
+
+/* MOBILE TABS */
+.mobile__tabs-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.mobile__tabs-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mobile__tabs-list {
+  position: relative;
+  display: flex;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 10px;
+}
+
+.mobile__tabs-list--active {
+  width: 175px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px
+}
+
+.mobile__tabs-list--dropdown {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: all .1s linear;
+  overflow: hidden;
+  background-color: #fff;
+  transform: translateY(96%);
+  z-index: 3;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1)
+}
+
+.mobile__tabs-list--inactive {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 10px 15px;
+}
+
+.mobile__tabs-list--active-text {
+  position: relative;
+  margin: 0;
+  font-weight: 600;
+  color: #ec6608;
+}
+
+.mobile__tabs-list--active-icon {
+  width: 14%;
+  transition: all .3s;
+}
+
+
+

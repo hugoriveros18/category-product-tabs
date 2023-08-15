@@ -1,7 +1,7 @@
 {
   "vendor": "panamericana",
   "name": "category-product-tabs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "title": "Category Product Tabs",
   "description": "Tab layout de categorias con vitrina de productos",
   "builders": {
@@ -11,7 +11,9 @@
     "store": "0.x"
   },
   "dependencies": {
-    "vtex.css-handles": "0.x"
+    "vtex.css-handles": "0.x",
+    "vtex.styleguide": "9.x",
+    "vtex.device-detector": "0.x"
   },
   "registries": [
     "smartcheckout"
