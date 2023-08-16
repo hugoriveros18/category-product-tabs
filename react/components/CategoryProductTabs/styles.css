@@ -111,7 +111,7 @@
   }
 
   .productos__ver-todo {
-    margin-top: 24px;
+    margin-top: 12px;
   }
 
   .productos__ver-todo a {
@@ -126,10 +126,6 @@
     margin: 26px 0;
   }
 
-  .categorias__productos-container {
-    margin: 0;
-  }
-
   .productos__slider-container--child {
     min-height    : 365px;
   }
@@ -142,10 +138,6 @@
 
   .productos__slider-container--child {
     min-height    : 380px;
-  }
-
-  .productos__ver-todo {
-    margin-top: 0;
   }
 }
 
@@ -164,6 +156,7 @@
   margin: 0;
   font-size: 18px;
   font-weight: 600;
+  color: #3F3F40;
 }
 
 .mobile__tabs-list {
@@ -182,7 +175,7 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 10px 0;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px
 }
