@@ -155,8 +155,8 @@ function TabsLayout({
 
   //METHODS
   const handleTabChange = (categoria:Categoria) => {
-    setCategoriaActiva(categoria)
     setIsListOpen(false)
+    setCategoriaActiva(categoria)
   }
 
   //JSX
