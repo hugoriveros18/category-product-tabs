@@ -83,7 +83,7 @@
   margin-top     : 15px;
 }
 
-.productos__ver-todo a {
+.productos__ver-todo-link {
   padding         : 7px 23px;
   font-size       : 12px;
   font-weight     : 700;
@@ -96,7 +96,7 @@
   transition: all .3s ease-out;
 }
 
-.productos__ver-todo a:hover {
+.productos__ver-todo-link:hover {
   background-color: #ec6608;
   color: #fff;
 }
@@ -114,7 +114,7 @@
     margin-top: 12px;
   }
 
-  .productos__ver-todo a {
+  .productos__ver-todo-link {
     font-size   : 16px;
     padding     : 12px 24px;
     border-width: 2px;

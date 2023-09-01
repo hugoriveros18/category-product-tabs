@@ -21,10 +21,12 @@ type Categoria = {
 type CategoryProductTabsProps = {
   ProductListContext: any
   categorias: Categoria[]
+  mobileArrowIcon: string
 }
 type TabsLayoutProps = {
   categorias: Categoria[]
   categoriaActiva: Categoria | null
+  mobileArrowIcon: string
   setCategoriaActiva: React.Dispatch<React.SetStateAction<Categoria | null>>
 }
 
@@ -58,6 +60,7 @@ const CSS_HANDLES = [
   'productos__slider-container',
   'productos__slider-container--child',
   'productos__ver-todo',
+  'productos__ver-todo-link',
   'mobile__tabs-container',
   'mobile__tabs-title',
   'mobile__tabs-list',
@@ -68,7 +71,11 @@ const CSS_HANDLES = [
   'mobile__tabs-list--dropdown',
 ]
 
-export default function CategoryProductTabs({ProductListContext,categorias}:CategoryProductTabsProps) {
+export default function CategoryProductTabs({
+  ProductListContext,
+  categorias,
+  mobileArrowIcon = "https://panamericana.vteximg.com.br/arquivos/down-arrow-category-tabs.svg"
+}:CategoryProductTabsProps) {
 
   //CSS HANDLES
   const handles = useCssHandles(CSS_HANDLES);
@@ -90,6 +97,7 @@ export default function CategoryProductTabs({ProductListContext,categorias}:Cate
       <TabsLayout
         categorias={categorias}
         categoriaActiva={categoriaActiva}
+        mobileArrowIcon={mobileArrowIcon}
         setCategoriaActiva={setCategoriaActiva}
       />
 
@@ -118,7 +126,10 @@ export default function CategoryProductTabs({ProductListContext,categorias}:Cate
                 }
               </div>
               <div className={`${handles['productos__ver-todo']}`}>
-                <a href={categoriaActiva.linkRedireccionBoton}>
+                <a
+                  href={categoriaActiva.linkRedireccionBoton}
+                  className={`${handles['productos__ver-todo-link']}`}
+                >
                   VER TODO
                 </a>
               </div>
@@ -136,6 +147,7 @@ CategoryProductTabs.schema = CategoryProductTabsSchema;
 function TabsLayout({
   categorias,
   categoriaActiva,
+  mobileArrowIcon,
   setCategoriaActiva
 }:TabsLayoutProps) {
 
@@ -174,7 +186,7 @@ function TabsLayout({
             <p className={`${handles['mobile__tabs-list--active-text']}`}>{categoriaActiva?.__editorItemTitle}</p>
             <img
               alt='arrow'
-              src='https://panamericana.vteximg.com.br/arquivos/down-arrow-category-tabs.svg'
+              src={mobileArrowIcon}
               className={`${handles['mobile__tabs-list--active-icon']}`}
               style={{
                 transform: isListOpen ? 'rotate(180deg)' : 'rotate(0deg)'
